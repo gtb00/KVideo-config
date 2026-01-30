@@ -133,10 +133,31 @@ const queueRun = (tasks, limit) => {
     else if (latest?.success) stats[api].status = "✅";
   }
 
-  // === 生成 Markdown ===
-  let md = `# 源接口健康检测报告\n\n最近更新时间：${nowCST}\n\n`;
-  md += `**总源数:** ${apiEntries.length} | **检测关键词:** ${SEARCH_KEYWORD}\n\n`;
-  md += "| 状态 | 资源名称 | ID/地址 | API接口 | 搜索功能 | 成功 | 失败 | 成功率 | 最近7天趋势 |\n";
+  // === 计算聚合统计信息 ===
+  const totalCount = apiEntries.length;
+  const successCount = Object.values(stats).filter(s => s.status === "✅").length;
+  const failCount = totalCount - successCount - Object.values(stats).filter(s => s.status === "🚫").length;
+  const avgRate = totalCount > 0 ? (Object.values(stats).reduce((acc, s) => acc + parseFloat(s.successRate || 0), 0) / totalCount).toFixed(1) : 0;
+
+  const perfect = Object.values(stats).filter(s => parseFloat(s.successRate) === 100).length;
+  const high = Object.values(stats).filter(s => parseFloat(s.successRate) >= 80 && parseFloat(s.successRate) < 100).length;
+  const medium = Object.values(stats).filter(s => parseFloat(s.successRate) >= 50 && parseFloat(s.successRate) < 80).length;
+  const low = Object.values(stats).filter(s => parseFloat(s.successRate) < 50).length;
+
+// === 生成 Markdown 报告 ===
+  let md = `# API 健康报告（每日自动检测API状态）\n\n`;
+  md += `## API 状态（最近更新：${nowCST}）\n\n`;
+  md += `- 总 API 数量：${totalCount}\n`;
+  md += `- 成功 API 数量：${successCount}\n`;
+  md += `- 失败 API 数量：${failCount}\n`;
+  md += `- 平均可用率：${avgRate}%\n`;
+  md += `- 完美可用率（100%）：${perfect} 个\n`;
+  md += `- 高可用率（80%-99%）：${high} 个\n`;
+  md += `- 中等可用率（50%-79%）：${medium} 个\n`;
+  md += `- 低可用率（<50%）：${low} 个\n\n`;
+
+  md += `**检测关键词:** ${SEARCH_KEYWORD}\n\n`;
+  md += "| 状态 | 资源名称 | ID/备注 | API接口 | 搜索功能 | 成功 | 失败 | 成功率 | 最近7天趋势 |\n";
   md += "|------|---------|---------|---------|---------|-----:|-----:|-------:|--------------|\n";
 
   const sorted = Object.values(stats).sort((a, b) => {
