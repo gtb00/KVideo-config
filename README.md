@@ -21,12 +21,12 @@
 将 `<你的域名>` 替换为你的实际 Cloudflare Worker 地址。
 
 #### 1. 精简版 (Lite)
-- **原始 JSON**: `https://<你的域名>/?format=0&source=jin18`
-- **中转代理 JSON**: `https://<你的域名>/?format=1&source=jin18`
+- **原始 JSON**: `https://<你的域名>/?format=0&source=lite`
+- **中转代理 JSON**: `https://<你的域名>/?format=1&source=lite`
 
 #### 2. 精简成人版 (Adult)
-- **原始 JSON**: `https://<你的域名>/?format=0&source=jingjian`
-- **中转代理 JSON**: `https://<你的域名>/?format=1&source=jingjian`
+- **原始 JSON**: `https://<你的域名>/?format=0&source=adult`
+- **中转代理 JSON**: `https://<你的域名>/?format=1&source=adult`
 
 #### 3. 完整版 (Full / 默认)
 - **原始 JSON**: `https://<你的域名>/?format=0&source=full`
@@ -87,5 +87,6 @@
 5. **地域限制**：不建议在法律法规严苛的司法管辖区（如中国大陆）使用涉及侵权内容的配置。
 
 ---
+
 
 
