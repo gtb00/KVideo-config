@@ -16,7 +16,8 @@
 
 <details>
 <summary>🚀 快速开始：订阅链接模板</summary>
-## 🚀 部署方法
+
+###  🚀 部署方法
 
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com)
 2. 新建一个 **Workers & Pages → Worker**
@@ -25,7 +26,6 @@
 5. 在 Cloudflare Workers KV 中创建命名空间：名称：CONFIG_KV,绑定变量名：CONFIG_KV
 6. 绑定自定义域名（可选）
 
----
 ### 💡 使用说明
 将 `<你的域名>` 替换为你的实际 Cloudflare Worker 地址。
 
@@ -87,6 +87,7 @@
 5. **地域限制**：不建议在法律法规严苛的司法管辖区（如中国大陆）使用涉及侵权内容的配置。
 
 ---
+
 
 
 
