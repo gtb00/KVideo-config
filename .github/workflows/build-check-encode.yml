@@ -5,7 +5,7 @@ on:
     - cron: "0 17 * * *"  # 每天北京时间凌晨1点运行 (UTC 17点)
   push:
     paths:
-      - 'LunaTV-config.json'
+      - 'KVideo-config.json'
   workflow_dispatch:
     inputs:
       api_name:
@@ -41,7 +41,7 @@ jobs:
               .api_site
               | with_entries(select(.value._comment | not))
             )
-          }' LunaTV-config.json > jingjian.json
+          }' KVideo-config.json > jingjian.json
 
       - name: Validate jingjian.json
         run: jq empty jingjian.json
@@ -106,7 +106,7 @@ jobs:
           git reset --soft origin/main
 
           # 添加所有生成文件
-          git add jingjian.json jin18.json LunaTV-config.txt jingjian.txt jin18.txt report.md README.md
+          git add jingjian.json jin18.json KVideo-config.txt jingjian.txt jin18.txt report.md README.md
 
           # 提交更新，如果没有变化则输出提示
           git commit -m "自动更新 JSON、Base58 和 API 报告 ($(date -d '+8 hour' +'%Y-%m-%d %H:%M:%S CST'))" || echo "⚠️ 没有文件变化可提交"
