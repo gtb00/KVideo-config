@@ -43,12 +43,18 @@ const FORMAT_CONFIG = {
   'proxy': { proxy: true }
 }
 
+/**
+ * 递归处理 JSON，支持 api 和 baseUrl 字段
+ */
 function addOrReplacePrefix(obj, newPrefix) {
   if (typeof obj !== 'object' || obj === null) return obj
   if (Array.isArray(obj)) return obj.map(item => addOrReplacePrefix(item, newPrefix))
+  
   const newObj = {}
   for (const key in obj) {
-    if (key === 'api' && typeof obj[key] === 'string') {
+    const lowerKey = key.toLowerCase();
+    // 兼容多种字段名
+    if ((lowerKey === 'api' || lowerKey === 'baseurl') && typeof obj[key] === 'string') {
       let apiUrl = obj[key]
       const urlIndex = apiUrl.indexOf('?url=')
       if (urlIndex !== -1) apiUrl = apiUrl.slice(urlIndex + 5)
@@ -61,10 +67,15 @@ function addOrReplacePrefix(obj, newPrefix) {
   return newObj
 }
 
-async function getCachedJSON(url) {
+/**
+ * 带强制刷新逻辑的缓存获取
+ */
+async function getCachedJSON(url, forceFlush = false) {
   const kvAvailable = typeof KV !== 'undefined' && KV && typeof KV.get === 'function'
+  const cacheKey = 'V3_RAW_' + url
+  
   if (kvAvailable) {
-    const cacheKey = 'CACHE_' + url
+    if (forceFlush) await KV.delete(cacheKey)
     const cached = await KV.get(cacheKey)
     if (cached) {
       try { return JSON.parse(cached) } catch (e) { await KV.delete(cacheKey) }
@@ -87,13 +98,33 @@ async function handleRequest(request) {
   const formatParam = reqUrl.searchParams.get('format')
   const sourceParam = reqUrl.searchParams.get('source')
   const prefixParam = reqUrl.searchParams.get('prefix')
+  const forceFlush = reqUrl.searchParams.get('flush') === '1'
 
   const currentOrigin = reqUrl.origin
   const defaultPrefix = currentOrigin + '/?url='
 
   if (reqUrl.pathname === '/health') return new Response('OK', { headers: CORS_HEADERS })
+  
+  // 代理逻辑
   if (targetUrlParam) return handleProxyRequest(request, targetUrlParam, currentOrigin)
-  if (formatParam !== null) return handleFormatRequest(formatParam, sourceParam, prefixParam, defaultPrefix)
+  
+  // 转换逻辑
+  if (formatParam !== null) {
+    try {
+      const config = FORMAT_CONFIG[formatParam]
+      if (!config) return errorResponse('Invalid format', {}, 400)
+      const sourceCfg = JSON_SOURCES[sourceParam] || JSON_SOURCES['full']
+      
+      const data = await getCachedJSON(sourceCfg.url, forceFlush)
+      const newData = config.proxy ? addOrReplacePrefix(data, prefixParam || defaultPrefix) : data
+      
+      return new Response(JSON.stringify(newData), {
+        headers: { 'Content-Type': 'application/json;charset=UTF-8', ...CORS_HEADERS }
+      })
+    } catch (err) {
+      return errorResponse('Internal Error', { message: err.message }, 500)
+    }
+  }
 
   return handleHomePage(currentOrigin, defaultPrefix)
 }
@@ -106,11 +137,7 @@ async function handleProxyRequest(request, targetUrlParam, currentOrigin) {
       headers: request.headers,
       body: request.method !== 'GET' && request.method !== 'HEAD' ? await request.arrayBuffer() : undefined,
     })
-    const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 9000)
-    const response = await fetch(proxyRequest, { signal: controller.signal })
-    clearTimeout(timeoutId)
-
+    const response = await fetch(proxyRequest)
     const responseHeaders = new Headers(CORS_HEADERS)
     for (const [key, value] of response.headers) {
       if (!EXCLUDE_HEADERS.has(key.toLowerCase())) responseHeaders.set(key, value)
@@ -118,21 +145,6 @@ async function handleProxyRequest(request, targetUrlParam, currentOrigin) {
     return new Response(response.body, { status: response.status, headers: responseHeaders })
   } catch (err) {
     return errorResponse('Proxy Error', { message: err.message }, 502)
-  }
-}
-
-async function handleFormatRequest(formatParam, sourceParam, prefixParam, defaultPrefix) {
-  try {
-    const config = FORMAT_CONFIG[formatParam]
-    if (!config) return errorResponse('Invalid format', {}, 400)
-    const sourceCfg = JSON_SOURCES[sourceParam] || JSON_SOURCES['full']
-    const data = await getCachedJSON(sourceCfg.url)
-    const newData = config.proxy ? addOrReplacePrefix(data, prefixParam || defaultPrefix) : data
-    return new Response(JSON.stringify(newData), {
-      headers: { 'Content-Type': 'application/json;charset=UTF-8', ...CORS_HEADERS }
-    })
-  } catch (err) {
-    return errorResponse('Internal Error', { message: err.message }, 500)
   }
 }
 
@@ -157,10 +169,6 @@ async function handleHomePage(currentOrigin, defaultPrefix) {
     th { text-align: left; background: #f8fafc; padding: 12px; border-bottom: 2px solid var(--border); }
     td { padding: 16px 12px; border-bottom: 1px solid var(--border); }
     .source-name { font-weight: bold; color: #0f172a; display: block; margin-bottom: 4px; }
-    .link-group { display: flex; flex-direction: column; gap: 8px; }
-    .badge { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; margin-right: 5px; }
-    .badge-raw { background: #fef3c7; color: #92400e; }
-    .badge-proxy { background: #dcfce7; color: #166534; }
     .url-text { font-family: monospace; font-size: 12px; color: #64748b; word-break: break-all; cursor: pointer; }
     .url-text:hover { color: var(--primary); text-decoration: underline; }
   </style>
@@ -195,7 +203,7 @@ async function handleHomePage(currentOrigin, defaultPrefix) {
             <div class="url-text" onclick="quickCopy('${currentOrigin}/?format=0&source=${key}')">点击复制原始链接</div>
           </td>
           <td>
-            <div class="url-text" onclick="quickCopy('${currentOrigin}/?format=1&source=${key}')">点击复制中转链接</div>
+            <div class="url-text" onclick="quickCopy('${currentOrigin}/?format=1&source=${key})">点击复制中转链接</div>
           </td>
         </tr>`).join('')}
       </tbody>
@@ -203,24 +211,60 @@ async function handleHomePage(currentOrigin, defaultPrefix) {
   </div>
 
   <div class="card">
-    <h2>🛠️ 进阶参数</h2>
+    <h2>🛠️ 进阶说明</h2>
     <ul>
-      <li><code>format=0</code>: 仅获取原始 JSON 数据。</li>
-      <li><code>format=1</code>: 自动给 JSON 内部的所有 <code>api</code> 字段加上代理前缀。</li>
-      <li><code>prefix=xxx</code>: 自定义中转前缀（需配合 format=1 使用）。</li>
+      <li><code>format=1</code>: 自动转换内部 <code>api</code> 或 <code>baseUrl</code> 字段。</li>
     </ul>
   </div>
 
   <script>
-    function copyText(btn) {
-      const code = btn.previousElementSibling.innerText;
-      navigator.clipboard.writeText(code);
-      btn.innerText = '已复制';
-      setTimeout(() => btn.innerText = '复制', 1500);
+    // 兼容性复制核心逻辑
+    async function universalCopy(text) {
+      // 优先尝试现代 API
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {}
+      }
+
+      // 回退到传统 textarea 方案
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      textArea.style.top = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        const success = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        return success;
+      } catch (e) {
+        document.body.removeChild(textArea);
+        return false;
+      }
     }
-    function quickCopy(url) {
-      navigator.clipboard.writeText(url);
-      alert('链接已成功复制到剪贴板！');
+
+    async function copyText(btn) {
+      const code = btn.previousElementSibling.innerText;
+      const ok = await universalCopy(code);
+      if (ok) {
+        btn.innerText = '已复制';
+        setTimeout(() => btn.innerText = '复制', 1500);
+      } else {
+        prompt("请手动复制链接：", code);
+      }
+    }
+
+    async function quickCopy(url) {
+      const ok = await universalCopy(url);
+      if (ok) {
+        alert('链接已成功复制到剪贴板！');
+      } else {
+        prompt("请手动复制链接：", url);
+      }
     }
   </script>
 </body>
