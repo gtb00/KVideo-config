@@ -1,6 +1,6 @@
 # 🔄 API Proxy & LunaTV 配置中转服务
 
-这是一个基于 Cloudflare Workers 的通用 API 中转工具，专门用于解决 MoonTV / LunaTV 等客户端在访问 GitHub 原始配置或受限接口时的跨域、被墙及格式转换问题。
+这是一个基于 Cloudflare Workers 的通用 API 中转工具，专门用于解决 KVideo 客户端在访问 GitHub 原始配置或受限接口时的跨域、被墙及格式转换问题。
 
 ---
 
@@ -16,7 +16,16 @@
 
 <details>
 <summary>🚀 快速开始：订阅链接模板</summary>
+## 🚀 部署方法
 
+1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. 新建一个 **Workers & Pages → Worker**
+3. 将 `worker.js` 代码粘贴到编辑器中
+4. 保存并部署
+5. 在 Cloudflare Workers KV 中创建命名空间：名称：CONFIG_KV,绑定变量名：CONFIG_KV
+6. 绑定自定义域名（可选）
+
+---
 ### 💡 使用说明
 将 `<你的域名>` 替换为你的实际 Cloudflare Worker 地址。
 
@@ -51,10 +60,9 @@
 
 ## 🆕 最近更新
 
-- 🔍 **智能健康检测**：GitHub Actions 每 1 小时自动检测 API 可用性。
+- 🔍 **智能健康检测**：GitHub Actions 每日自动检测 API 可用性。
 - 🚨 **墙态识别**：新增连续失败检测，连续 3 次失败将触发 `🚨` 严重警告。
 - 🧹 **自动化构建**：自动从主配置生成 `lite.json` (过滤 adult 组) 和 `adult.json`。
-- ⚡ **移除冗余**：已移除 Base58 编码功能，全面回归标准 JSON 交互，提升响应速度。
 
 ---
 
@@ -87,6 +95,7 @@
 5. **地域限制**：不建议在法律法规严苛的司法管辖区（如中国大陆）使用涉及侵权内容的配置。
 
 ---
+
 
 
 
