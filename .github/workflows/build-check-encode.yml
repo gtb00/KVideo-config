@@ -45,11 +45,11 @@ jobs:
         run: jq empty jin18.json
 
       # 5️⃣ 运行 API 检查脚本
-      # 确保 check_sources_queue_retry.js 已适配数组格式
+      # 确保 check_api.js 已适配数组格式
       - name: Run API check
         run: |
           SEARCH_KEY="${{ github.event.inputs.api_name || '斗罗大陆' }}"
-          node check_sources_queue_retry.js "$SEARCH_KEY"
+          node check_api.js "$SEARCH_KEY"
 
       # 6️⃣ Base58 编码
       - name: Encode JSON to Base58
