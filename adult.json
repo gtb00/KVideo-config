@@ -280,14 +280,6 @@
     "priority": 5
   },
   {
-    "id": "hsck",
-    "name": "🔞黄色仓库",
-    "baseUrl": "https://hsckzy.xyz/api.php/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 5
-  },
-  {
     "id": "jkun",
     "name": "🔞jkun资源",
     "baseUrl": "https://jkunzyapi.com/api.php/provide/vod",
@@ -339,6 +331,14 @@
     "id": "didi",
     "name": "🔞滴滴资源",
     "baseUrl": "https://api.ddapi.cc/api.php/provide/vod",
+    "group": "premium",
+    "enabled": true,
+    "priority": 5
+  },
+  {
+    "id": "heiliao",
+    "name": "🔞黑料资源",
+    "baseUrl": "https://www.heiliaozyapi.com/api.php/provide/vod",
     "group": "premium",
     "enabled": true,
     "priority": 5
@@ -408,17 +408,18 @@
     "priority": 10
   },
   {
+    "id": "hsck",
+    "name": "🔞黄色仓库",
+    "baseUrl": "https://hsckzy.xyz/api.php/provide/vod",
+    "group": "premium",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "超时/宕机"
+  },
+  {
     "id": "aosika",
     "name": "🔞-奥斯卡-",
     "baseUrl": "https://aosikazy.com/api.php/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 10
-  },
-  {
-    "id": "heiliao",
-    "name": "🔞黑料资源",
-    "baseUrl": "https://www.heiliaozyapi.com/api.php/provide/vod",
     "group": "premium",
     "enabled": false,
     "priority": 101,
