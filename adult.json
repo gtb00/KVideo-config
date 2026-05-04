@@ -288,6 +288,14 @@
     "priority": 1
   },
   {
+    "id": "heiliao",
+    "name": "🔞黑料资源",
+    "baseUrl": "https://www.heiliaozyapi.com/api.php/provide/vod",
+    "group": "premium",
+    "enabled": true,
+    "priority": 1
+  },
+  {
     "id": "baiwan",
     "name": "🔞百万资源",
     "baseUrl": "https://api.bwzyz.com/api.php/provide/vod",
@@ -387,14 +395,6 @@
     "id": "doudou",
     "name": "🔞豆豆资源",
     "baseUrl": "https://api.douapi.cc/api.php/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 5
-  },
-  {
-    "id": "heiliao",
-    "name": "🔞黑料资源",
-    "baseUrl": "https://www.heiliaozyapi.com/api.php/provide/vod",
     "group": "premium",
     "enabled": true,
     "priority": 5
