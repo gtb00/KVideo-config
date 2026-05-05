@@ -392,6 +392,14 @@
     "priority": 5
   },
   {
+    "id": "hsck",
+    "name": "🔞黄色仓库",
+    "baseUrl": "https://hsckzy.xyz/api.php/provide/vod",
+    "group": "premium",
+    "enabled": true,
+    "priority": 5
+  },
+  {
     "id": "doudou",
     "name": "🔞豆豆资源",
     "baseUrl": "https://api.douapi.cc/api.php/provide/vod",
@@ -416,10 +424,10 @@
     "priority": 10
   },
   {
-    "id": "hsck",
-    "name": "🔞黄色仓库",
-    "baseUrl": "https://hsckzy.xyz/api.php/provide/vod",
-    "group": "premium",
+    "id": "hhzy",
+    "name": "🎬豪华资源",
+    "baseUrl": "https://hhzyapi.com/api.php/provide/vod",
+    "group": "normal",
     "enabled": true,
     "priority": 10
   },
@@ -436,15 +444,6 @@
     "id": "guangsu",
     "name": "🎬光速资源",
     "baseUrl": "https://api.guangsuapi.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": false,
-    "priority": 130,
-    "_comment": "接口解析错误"
-  },
-  {
-    "id": "hhzy",
-    "name": "🎬豪华资源",
-    "baseUrl": "https://hhzyapi.com/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
     "priority": 130,
