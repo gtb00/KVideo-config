@@ -96,14 +96,6 @@
     "priority": 1
   },
   {
-    "id": "uku",
-    "name": "🎬U酷影视",
-    "baseUrl": "https://api.ukuapi88.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 1
-  },
-  {
     "id": "modudm",
     "name": "🎬魔都动漫",
     "baseUrl": "https://caiji.moduapi.cc/api.php/provide/vod",
@@ -115,14 +107,6 @@
     "id": "ryzy",
     "name": "🎬如意资源",
     "baseUrl": "https://cj.rycjapi.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 1
-  },
-  {
-    "id": "youku",
-    "name": "优酷资源",
-    "baseUrl": "https://api.ukuapi.com/api.php/provide/vod",
     "group": "normal",
     "enabled": true,
     "priority": 1
@@ -400,6 +384,14 @@
     "priority": 5
   },
   {
+    "id": "jingpin",
+    "name": "🔞精品资源",
+    "baseUrl": "https://www.jingpinx.com/api.php/provide/vod",
+    "group": "premium",
+    "enabled": true,
+    "priority": 5
+  },
+  {
     "id": "aosika",
     "name": "🔞-奥斯卡-",
     "baseUrl": "https://aosikazy.com/api.php/provide/vod",
@@ -416,6 +408,14 @@
     "priority": 10
   },
   {
+    "id": "guangsu",
+    "name": "🎬光速资源",
+    "baseUrl": "https://api.guangsuapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 10
+  },
+  {
     "id": "hhzy",
     "name": "🎬豪华资源",
     "baseUrl": "https://hhzyapi.com/api.php/provide/vod",
@@ -424,22 +424,22 @@
     "priority": 10
   },
   {
-    "id": "jingpin",
-    "name": "🔞精品资源",
-    "baseUrl": "https://www.jingpinx.com/api.php/provide/vod",
-    "group": "premium",
+    "id": "uku",
+    "name": "🎬U酷影视",
+    "baseUrl": "https://api.ukuapi88.com/api.php/provide/vod",
+    "group": "normal",
     "enabled": false,
     "priority": 101,
     "_comment": "超时/宕机"
   },
   {
-    "id": "guangsu",
-    "name": "🎬光速资源",
-    "baseUrl": "https://api.guangsuapi.com/api.php/provide/vod",
+    "id": "youku",
+    "name": "优酷资源",
+    "baseUrl": "https://api.ukuapi.com/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 102,
-    "_comment": "接口解析错误"
+    "priority": 101,
+    "_comment": "超时/宕机"
   },
   {
     "id": "wangwang",
