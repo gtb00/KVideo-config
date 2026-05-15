@@ -128,14 +128,6 @@
     "priority": 1
   },
   {
-    "id": "alvin",
-    "name": "🔞--AIvin-",
-    "baseUrl": "http://lbapiby.com/api.php/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 1
-  },
-  {
     "id": "155zy",
     "name": "🔞155-资源",
     "baseUrl": "https://155api.com/api.php/provide/vod",
@@ -203,14 +195,6 @@
     "id": "lajiao",
     "name": "🔞辣椒资源",
     "baseUrl": "https://apilj.com/api.php/provide/vod",
-    "group": "premium",
-    "enabled": true,
-    "priority": 1
-  },
-  {
-    "id": "shayu",
-    "name": "🔞鲨鱼资源",
-    "baseUrl": "https://shayuapi.com/api.php/provide/vod",
     "group": "premium",
     "enabled": true,
     "priority": 1
@@ -288,9 +272,9 @@
     "priority": 5
   },
   {
-    "id": "wolong",
-    "name": "🎬卧龙资源",
-    "baseUrl": "https://wolongzyw.com/api.php/provide/vod",
+    "id": "maotai",
+    "name": "🎬茅台资源",
+    "baseUrl": "https://caiji.maotaizy.cc/api.php/provide/vod",
     "group": "normal",
     "enabled": true,
     "priority": 5
@@ -432,10 +416,28 @@
     "priority": 10
   },
   {
-    "id": "maotai",
-    "name": "🎬茅台资源",
-    "baseUrl": "https://caiji.maotaizy.cc/api.php/provide/vod",
+    "id": "wolong",
+    "name": "🎬卧龙资源",
+    "baseUrl": "https://wolongzyw.com/api.php/provide/vod",
     "group": "normal",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "超时/宕机"
+  },
+  {
+    "id": "alvin",
+    "name": "🔞--AIvin-",
+    "baseUrl": "http://lbapiby.com/api.php/provide/vod",
+    "group": "premium",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "超时/宕机"
+  },
+  {
+    "id": "shayu",
+    "name": "🔞鲨鱼资源",
+    "baseUrl": "https://shayuapi.com/api.php/provide/vod",
+    "group": "premium",
     "enabled": false,
     "priority": 101,
     "_comment": "超时/宕机"
