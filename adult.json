@@ -381,8 +381,8 @@
     "baseUrl": "https://caiji.dbzy5.com/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 102,
-    "_comment": "超时/宕机"
+    "priority": 103,
+    "_comment": "接口解析错误"
   },
   {
     "id": "maotai",
@@ -390,8 +390,8 @@
     "baseUrl": "https://caiji.maotaizy.cc/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 104,
-    "_comment": "超时/宕机"
+    "priority": 105,
+    "_comment": "接口解析错误"
   },
   {
     "id": "senlin",
@@ -399,7 +399,7 @@
     "baseUrl": "https://beiyong.slapibf.com/api.php/provide/vod",
     "group": "premium",
     "enabled": false,
-    "priority": 113,
+    "priority": 114,
     "_comment": "接口解析错误"
   },
   {
@@ -408,7 +408,7 @@
     "baseUrl": "https://api.bwzyz.com/api.php/provide/vod",
     "group": "premium",
     "enabled": false,
-    "priority": 115,
+    "priority": 116,
     "_comment": "接口解析错误"
   },
   {
@@ -417,7 +417,7 @@
     "baseUrl": "https://jinyingzy.com/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 122,
+    "priority": 123,
     "_comment": "超时/宕机"
   },
   {
@@ -426,7 +426,7 @@
     "baseUrl": "https://aosikazy.com/api.php/provide/vod",
     "group": "premium",
     "enabled": false,
-    "priority": 124,
+    "priority": 125,
     "_comment": "接口解析错误"
   },
   {
