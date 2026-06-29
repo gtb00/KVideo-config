@@ -176,6 +176,14 @@
     "priority": 5
   },
   {
+    "id": "jisu",
+    "name": "🎬极速资源",
+    "baseUrl": "https://jszyapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 5
+  },
+  {
     "id": "moduzy",
     "name": "魔都影视",
     "baseUrl": "https://www.moduzy.com/api.php/provide/vod",
