@@ -152,6 +152,14 @@
     "priority": 5
   },
   {
+    "id": "jisu",
+    "name": "🎬极速资源",
+    "baseUrl": "https://jszyapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 5
+  },
+  {
     "id": "uku",
     "name": "🎬U酷影视",
     "baseUrl": "https://api.ukuapi88.com/api.php/provide/vod",
@@ -182,14 +190,6 @@
     "group": "normal",
     "enabled": true,
     "priority": 5
-  },
-  {
-    "id": "jisu",
-    "name": "🎬极速资源",
-    "baseUrl": "https://jszyapi.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 10
   },
   {
     "id": "xinlang",
