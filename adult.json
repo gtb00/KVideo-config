@@ -364,8 +364,9 @@
     "name": "🔞鲨鱼资源",
     "baseUrl": "https://shayuapi.com/api.php/provide/vod",
     "group": "premium",
-    "enabled": true,
-    "priority": 10
+    "enabled": false,
+    "priority": 101,
+    "_comment": "超时/宕机"
   },
   {
     "id": "subo",
@@ -373,8 +374,8 @@
     "baseUrl": "https://subocaiji.com/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 102,
-    "_comment": "超时/宕机"
+    "priority": 103,
+    "_comment": "搜索无结果"
   },
   {
     "id": "piaoling",
@@ -382,7 +383,7 @@
     "baseUrl": "https://p2100.net/api.php/provide/vod",
     "group": "normal",
     "enabled": false,
-    "priority": 115,
+    "priority": 116,
     "_comment": "超时/宕机"
   },
   {
@@ -545,7 +546,7 @@
     "group": "premium",
     "enabled": false,
     "priority": 130,
-    "_comment": "接口解析错误"
+    "_comment": "超时/宕机"
   },
   {
     "id": "baiwan",
