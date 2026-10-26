@@ -136,9 +136,25 @@
     "priority": 5
   },
   {
+    "id": "dytt",
+    "name": "🎬电影天堂",
+    "baseUrl": "http://caiji.dyttzyapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 5
+  },
+  {
     "id": "modu",
     "name": "🎬魔都资源",
     "baseUrl": "https://www.mdzyapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 5
+  },
+  {
+    "id": "feifan",
+    "name": "🎬非凡资源",
+    "baseUrl": "https://api.ffzyapi.com/api.php/provide/vod",
     "group": "normal",
     "enabled": true,
     "priority": 5
@@ -179,6 +195,14 @@
     "id": "jiangyu",
     "name": "鲸鱼资源",
     "baseUrl": "https://jyzyapi.com/provide/vod",
+    "group": "normal",
+    "enabled": true,
+    "priority": 5
+  },
+  {
+    "id": "yilingba2",
+    "name": "1080JSON",
+    "baseUrl": "https://api.1080zyku.com/inc/apijson.php",
     "group": "normal",
     "enabled": true,
     "priority": 5
