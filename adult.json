@@ -48,14 +48,6 @@
     "priority": 1
   },
   {
-    "id": "zuida",
-    "name": "🎬最大资源",
-    "baseUrl": "https://api.zuidapi.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 1
-  },
-  {
     "id": "wujin",
     "name": "🎬无尽资源",
     "baseUrl": "https://api.wujinapi.me/api.php/provide/vod",
@@ -99,14 +91,6 @@
     "id": "youku",
     "name": "优酷资源",
     "baseUrl": "https://api.ukuapi.com/api.php/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 1
-  },
-  {
-    "id": "huya",
-    "name": "虎牙资源",
-    "baseUrl": "https://www.huyaapi.com/api.php/provide/vod",
     "group": "normal",
     "enabled": true,
     "priority": 1
@@ -312,14 +296,6 @@
     "priority": 5
   },
   {
-    "id": "jiangyu",
-    "name": "鲸鱼资源",
-    "baseUrl": "https://jyzyapi.com/provide/vod",
-    "group": "normal",
-    "enabled": true,
-    "priority": 5
-  },
-  {
     "id": "moduzy",
     "name": "魔都影视",
     "baseUrl": "https://www.moduzy.com/api.php/provide/vod",
@@ -368,12 +344,39 @@
     "priority": 10
   },
   {
+    "id": "zuida",
+    "name": "🎬最大资源",
+    "baseUrl": "https://api.zuidapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "超时/宕机"
+  },
+  {
+    "id": "huya",
+    "name": "虎牙资源",
+    "baseUrl": "https://www.huyaapi.com/api.php/provide/vod",
+    "group": "normal",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "接口解析错误"
+  },
+  {
+    "id": "jiangyu",
+    "name": "鲸鱼资源",
+    "baseUrl": "https://jyzyapi.com/provide/vod",
+    "group": "normal",
+    "enabled": false,
+    "priority": 101,
+    "_comment": "接口解析错误"
+  },
+  {
     "id": "naixiang",
     "name": "🔞奶香资源",
     "baseUrl": "https://Naixxzy.com/api.php/provide/vod",
     "group": "premium",
     "enabled": false,
-    "priority": 111,
+    "priority": 112,
     "_comment": "接口解析错误"
   },
   {
